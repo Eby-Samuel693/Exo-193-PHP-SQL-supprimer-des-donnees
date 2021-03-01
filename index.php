@@ -1,4 +1,6 @@
 <?php
+ini_set('error_reporting',E_ALL);
+ini_set('display_errors',1);
 
 /**
  * 1. Importez la table user dans une base de données que vous aurez créée au préalable via PhpMyAdmin
@@ -10,3 +12,31 @@
  *    --> Finalement, vous décidez de supprimer complètement la table
  *    --> Et pour finir, comme vous n'avez plus de table dans la base de données, vous décidez de supprimer aussi la base de données.
  */
+try{
+    $server = 'localhost';
+    $db = 'table_193';
+    $user = 'root';
+    $pass = '';
+
+    $id = 2;
+    $bdd = new PDO("mysql:host=$server;dbname=$db;charset=utf8",$user,$pass);
+//    $sql = "DELETE FROM user WHERE id = 4";
+//        if($bdd ->exec($sql) !== false){
+//           echo "l'entrée de l'id 4 a etait supprimé";
+//    }
+
+//    $sql = "TRUNCATE TABLE USER";
+//    if($bdd->exec($sql) !== false){
+//        echo "truncate efféctué ! ";
+//    }
+
+    $sql = "DROP TABLE user";
+    if($bdd->exec($sql) !== false){
+        echo "la table est supprimé !";
+    }
+
+}
+
+catch(PDOException $exception) {
+    echo $exception->getMessage();
+}
